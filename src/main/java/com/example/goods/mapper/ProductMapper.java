@@ -1,7 +1,6 @@
 package com.example.goods.mapper;
 
 import com.example.goods.pojo.Product;
-import lombok.Data;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -12,8 +11,8 @@ public interface ProductMapper {
     @Select("select id, name, price, image, stock, type from product")
     public List<Product> list();
 
-    @Select("select id, name, price, image, stock, type from product where id = #{id}")
-    public List<Product> getById(Integer id);
+    @Select("select name from product where id = #{id}")
+    public String getName(Integer id);
 
     @Select("select id, name, price, image, stock, type from product")
     public List<Product> page(Integer start,Integer pageSize);

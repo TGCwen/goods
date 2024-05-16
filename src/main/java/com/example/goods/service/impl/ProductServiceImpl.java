@@ -8,6 +8,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,9 +26,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getById(Integer id) {
-        List<Product> product = productMapper.getById(id);
-        return product;
+    @Cacheable(value = "name", key = "#id")
+    public String getName(Integer id) {
+        String name = productMapper.getName(id).toString();
+        System.out.println("数据库获取信息！");
+        return name;
     }
 
     @Override

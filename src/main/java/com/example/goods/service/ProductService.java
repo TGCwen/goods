@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProductService {
     List<Product> list();
 
-    List<Product> getById(Integer id);
+    String getName(Integer id);
 
     void delete(Integer id);
 
