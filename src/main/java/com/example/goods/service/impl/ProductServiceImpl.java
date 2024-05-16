@@ -34,6 +34,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(value = "product", key = "#id")
+    public Product getById(Integer id) {
+        Product product = productMapper.getById(id);
+        System.out.println("数据库获取信息！");
+        return product;
+    }
+
+    @Override
     public void delete(Integer id) {
         productMapper.delete(id);
     }

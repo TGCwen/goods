@@ -10,6 +10,8 @@ public interface ProductService {
 
     String getName(Integer id);
 
+    Product getById(Integer id);
+
     void delete(Integer id);
 
     void add(Product product);

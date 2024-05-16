@@ -14,8 +14,11 @@ public interface ProductMapper {
     @Select("select name from product where id = #{id}")
     public String getName(Integer id);
 
+    @Select("select id, name, price, image, stock, type from product where id = #{id}")
+    public Product getById(Integer id);
+
     @Select("select id, name, price, image, stock, type from product")
-    public List<Product> page(Integer start,Integer pageSize);
+    public List<Product> page(Integer start, Integer pageSize);
 
     @Delete("delete from product where id = #{id}")
     public void delete(Integer id);
