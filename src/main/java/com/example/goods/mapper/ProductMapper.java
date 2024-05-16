@@ -12,6 +12,9 @@ public interface ProductMapper {
     @Select("select id, name, price, image, stock, type from product")
     public List<Product> list();
 
+    @Select("select id, name, price, image, stock, type from product where id = #{id}")
+    public List<Product> getById(Integer id);
+
     @Select("select id, name, price, image, stock, type from product")
     public List<Product> page(Integer start,Integer pageSize);
 
@@ -22,9 +25,6 @@ public interface ProductMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     @Insert("insert into product(name,price,image,stock,type) values (#{name}, #{price}, #{image}, #{stock}, #{type})")
     public void insert(Product product);
-
-//    @Select("select id, name, price, image, stock, type from product where id=#{id}")
-//    public Product getById(Integer id);
 
     public void update(Product product);
 

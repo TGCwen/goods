@@ -25,6 +25,13 @@ public class ProductController {
         return Result.success(productList);
     }
 
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Integer id) {
+        log.info("根据id查询产品信息");
+        List<Product> product = productService.getById(id);
+        return Result.success(product);
+    }
+
     @GetMapping("/page")
     public Result page(@RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer pageSize) {

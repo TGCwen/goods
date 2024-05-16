@@ -25,6 +25,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getById(Integer id) {
+        List<Product> product = productMapper.getById(id);
+        return product;
+    }
+
+    @Override
     public void delete(Integer id) {
         productMapper.delete(id);
     }
