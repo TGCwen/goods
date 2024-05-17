@@ -8,13 +8,17 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Slf4j
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductMapper productMapper;
@@ -42,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(value = "product", key = "#id")
     public void delete(Integer id) {
         productMapper.delete(id);
     }
@@ -65,6 +70,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(value = "product", key = "#product.id")
     public void update(Product product) {
         productMapper.update(product);
     }
