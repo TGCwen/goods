@@ -25,14 +25,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> list() {
-        List<Product> productList = productMapper.list();
-        return productList;
+        return productMapper.list();
     }
 
     @Override
     @Cacheable(value = "name", key = "#id")
     public String getName(Integer id) {
-        String name = productMapper.getName(id).toString();
+        String name = productMapper.getName(id);
         System.out.println("数据库获取信息！");
         return name;
     }
